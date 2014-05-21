@@ -1,0 +1,5 @@
+---
+:gitlab_url: https://gitlab.example.com
+
+# Found in My Profile -> Account -> Private token
+:private_token: super_secret_key_from_gitlab

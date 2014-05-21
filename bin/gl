@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'gitlab_cli'
+
+GitlabCLI.start
