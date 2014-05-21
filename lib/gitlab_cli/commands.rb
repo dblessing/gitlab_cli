@@ -2,7 +2,12 @@ class GitlabCLI::Commands < Thor
   require 'gitlab_cli/ui'
   Dir[File.expand_path('../commands/*.rb', __FILE__)].each { |f| require f }
 
-  class_option :config_file,
+  def initialize(*args)
+    super
+    GitlabCLI.load_config(options[:config])
+  end
+
+  class_option :config,
                :default => '~/.gitlab_cli.yml',
                :type    => :string,
                :banner  => 'Path to yaml config file'
@@ -57,10 +62,6 @@ class GitlabCLI::Commands < Thor
 
   # Helper methods
   no_commands do
-    def config
-      Gitlab::CLI.load_config(options[:config_file])
-    end
-
     def ui
       @ui ||= if STDOUT.tty?
                 Gitlab::CLI::UI::Color.new

@@ -20,10 +20,10 @@ module GitlabCLI
 
       _config = YAML.load_file(source)
 
-      # Gitlab.configure do |config|
-      #   config.endpoint       = _config['endpoint']
-      #   config.private_token  = _config['private_token']
-      # end
+      Gitlab.configure do |config|
+        config.endpoint       = _config[:gitlab_url]
+        config.private_token  = _config[:private_token]
+      end
     end
   end
 end
